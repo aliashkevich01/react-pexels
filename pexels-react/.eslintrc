@@ -1,0 +1,6 @@
+{
+    "plugins": ["formatjs", "react", "react-hooks", "@typescript-eslint"],
+    "rules": {
+      "formatjs/no-offset": "error"
+    }
+  }

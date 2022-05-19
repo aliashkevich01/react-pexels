@@ -1,0 +1,32 @@
+.category_wrap{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.category_text{
+  font-size: 1.2rem;
+  color: #fff;
+}
+.links_flex{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.category_link{
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: rgb(209, 202, 202);
+  overflow: hidden;
+  margin: 5px;
+}
+.category_link:hover{
+  filter: invert(100%);
+  text-decoration: underline;
+}
+@media (max-width: 500px) {
+  .category_link, .category_text {
+    font-size: .9rem;
+  }
+}

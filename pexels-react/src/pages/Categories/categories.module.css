@@ -1,0 +1,21 @@
+.categories_header{
+  background-color: #232a34;
+}
+.categories_header > div{
+  display: flex !important;
+  border-radius: 8px;
+  color: #C4C4C4;
+}
+.filters_nav{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 20px;
+  margin-top: 20vh;
+}
+@media(max-width: 600px){
+  .filters_nav {
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+}
