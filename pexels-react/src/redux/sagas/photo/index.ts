@@ -1,6 +1,6 @@
 import { FETCH_OPTIONS } from "../../../interfaces/FetchOptions";
 import { apply, call, put, select, take, fork, takeLatest} from 'redux-saga/effects'
-import { LOAD_BACKGROUND, LOAD_PHOTOS, LOAD_PHOTOS_FAILED, LOAD_PHOTOS_SUCCESS } from "../../reducers/photo/actions";
+import { LOAD_BACKGROUND, LOAD_BACKGROUND_SUCCESS, LOAD_PHOTOS, LOAD_PHOTOS_FAILED, LOAD_PHOTOS_SUCCESS } from "../../reducers/photo/actions";
 import { LOCATION_CHANGE } from "connected-react-router";
 import { ResponseInterface } from "../../../interfaces/responseInterface";
 import { PayloadInterface } from "../../../interfaces/ActionInterface";
@@ -43,37 +43,24 @@ export function* loadPhotos(action : { payload: PayloadInterface , type: string 
   }
 };
 export function* loadBackground() {
-      const state: stateInterface = yield select((state: StateInterface) => state.photo);
-      const { query, page, data, orientation, size, color, locale } = state;
-      const id = getRandomInt(200000);
-      const requestString = `https://api.pexels.com/v1/photos/${id}`;
-      const resp: Response = yield call(
-        fetch,
-        requestString,
-        FETCH_OPTIONS);
-      try {
-        const backPhoto: PhotoInterface = yield apply(resp, resp.json, []);
-        const data: PayloadInterface = {
-          query: query,
-          page: page,
-          data: state.data,
-          orientation: orientation,
-          size: size,
-          color: color,
-          backPhoto: backPhoto,
-          locale: locale,
-        }
-        yield put({
-          type: LOAD_PHOTOS_SUCCESS,
-          payload: data
-        });
-      }
-      catch(e) {
-        yield put({
-          type: LOAD_PHOTOS_FAILED,
-          payload: e
-        });
-      }
+  const action: unknown = yield take(LOCATION_CHANGE);
+  if(window.location.pathname === '/') {
+    const state: stateInterface = yield select((state: StateInterface) => state.photo);
+  const { query, page, data, orientation, size, color, locale } = state;
+  const id = getRandomInt(200000);
+  const requestString = `https://api.pexels.com/v1/photos/${id}`;
+  const resp: Response = yield call(
+    fetch,
+    requestString,
+    FETCH_OPTIONS); 
+    const backPhoto: PhotoInterface = yield apply(resp, resp.json, []);
+    console.log(backPhoto)
+    yield put({
+      type: LOAD_BACKGROUND_SUCCESS,
+      payload: backPhoto
+    });
+  
+  }
 }
 export function* loadOnEntry() {
   while(1) {
@@ -93,7 +80,7 @@ export function* loadOnEntry() {
   }
 }
 export default function* photoSaga() {
- // yield fork(loadBackground);
+  yield fork(loadBackground);
   yield fork(loadOnEntry);
   yield takeLatest(LOAD_PHOTOS, loadPhotos);
 }

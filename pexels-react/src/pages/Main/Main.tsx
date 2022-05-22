@@ -14,6 +14,14 @@ import { FormattedMessage } from 'react-intl';
 export default function Main() {
   const data: StateInterface = useSelector((state: StateInterface) => state);
   const dispatch = useDispatch();
+  let backUrl = 'https://images.pexels.com/photos/2880507/pexels-photo-2880507.jpeg';
+  const keys = Object.keys(data.photo.backPhoto);
+  if(keys.includes('src')) {
+    backUrl = data.photo.backPhoto.src.landscape;
+  }
+  const backStyle = {
+    background: `url(${backUrl}) top/cover no-repeat`
+  }
   const scrollHandler = (e: Event) => {
     const header = document.getElementsByTagName('header');
     const searchBar = header[0].getElementsByTagName('div') as HTMLCollection;
@@ -42,7 +50,7 @@ export default function Main() {
   }, [data.photo.isLoading, scrollHandler]);
   return (
     <Fragment>
-      <div className={classes.main_container}>
+      <div className={classes.main_container} style={backStyle}>
         <Header />
         <div className={classes.search_wrapper}>
           <h1 className={classes.main_title}>

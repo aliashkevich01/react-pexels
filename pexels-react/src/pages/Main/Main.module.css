@@ -1,7 +1,6 @@
 .main_container{
   width: 100vw;
   height: 100vh;
-  background: url('https://images.pexels.com/photos/2880507/pexels-photo-2880507.jpeg') center/cover no-repeat;
   overflow: hidden;
 }
 .search_wrapper{

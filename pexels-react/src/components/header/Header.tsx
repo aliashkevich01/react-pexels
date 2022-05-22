@@ -15,6 +15,7 @@ const Header = (props: {className?:string}) => {
   const [isNavExpanded, setIsNavExpanded] = useState(false)
   const changeLanguage = () => {
     const switchedLanguage = (data.locale === LOCALES.ENGLISH ? LOCALES.RUSSIAN :  LOCALES.ENGLISH)
+    setIsNavExpanded(!isNavExpanded)
     dispatch({
       type: CHANGE_LOCALE,
       payload: {

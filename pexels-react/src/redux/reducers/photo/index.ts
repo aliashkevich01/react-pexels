@@ -118,7 +118,7 @@ export const photoReducer = (state = initialState, action: ActionInterface) => {
         case LOAD_BACKGROUND_SUCCESS: {
             return {
                 ...state,
-                backPhotos: action.payload.backPhoto,
+                backPhoto: action.payload,
             }
         }
         case CHANGE_LOCALE: {
