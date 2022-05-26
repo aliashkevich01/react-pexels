@@ -20,11 +20,13 @@
     outline: none;
     border-radius: 10px;
 }
-
+select {
+  padding: 5px 7px !important;
+  word-spacing: 10px;
+}
 .select_wrapper > select::-ms-expand{
     display: none;
 }
-
 .select_arrow {
     position: absolute;
     z-index: -1;

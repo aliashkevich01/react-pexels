@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { useSelector } from 'react-redux';
 import { PhotoInterface } from '../../interfaces/PhotoInterface';
 import { StateInterface } from '../../interfaces/StateInterface';
@@ -9,9 +10,11 @@ export default function CardList() {
   const data: StateInterface = useSelector((state: StateInterface) => state);
   return (
     <div className={classes.card_list}>
-        {data?.photo?.isLoading ? <Preloader /> : data.photo.data?.photos?.map((photo: PhotoInterface, index: number) => {
+        {data?.photo?.isLoading ? <Preloader /> : data.photo.data?.photos?.length > 0 ? data.photo.data?.photos?.map((photo: PhotoInterface, index: number) => {
           return <Card key={index} photo={photo} />
-        })}
+        }) :
+        <Fragment />
+        }
       </div>
   );
 }

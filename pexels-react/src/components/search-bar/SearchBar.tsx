@@ -27,14 +27,12 @@ export default function SearchBar() {
       placeholder={intl.formatMessage({id: 'search_placeholder'})}
       onChange={search}
       maxLength={20}
-      value={window.location.pathname === '/categories'? (sessionStorage.getItem('query') !== '' ? 
+      defaultValue={window.location.pathname === '/categories'? (sessionStorage.getItem('query') !== '' ? 
       intl.formatMessage({
         id: JSON.stringify(sessionStorage.getItem('query')).substring(1, JSON.stringify(sessionStorage.getItem('query')).length - 1)
       }):  intl.formatMessage({
         id: data.photo.query,
-      })) : intl.formatMessage({
-        id: data.photo.query,
-      })}
+      })) : ''}
       />
       <button className={classes.search_button}>
         <svg

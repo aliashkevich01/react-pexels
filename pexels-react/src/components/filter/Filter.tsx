@@ -65,7 +65,7 @@ export default function Filter(props: FilterInterface) {
     <div className={classes.select_wrapper}>
       <select onChange={handleChange} tabIndex={0}>
        {filterTranslations.map((item) => {
-         return <option key={item.id} value={item.key}>{item.id !== 0 ? <FormattedMessage id={item.key}/>: <FormattedMessage id={item.value}/>}</option>
+         return <option key={item.id} value={item.key}>{item.id !== 0 ? <FormattedMessage id={item.value}/> : <Fragment><FormattedMessage id={props.filter_type}/><FormattedMessage id={item.key}/></Fragment>}</option>
        })} 
     </select>
     <div className="select-arrow"></div>
@@ -73,6 +73,3 @@ export default function Filter(props: FilterInterface) {
     </div>
   )
 }
-//{props.filter_values.map((item, idx) => {
-//  return <option key={idx} value={item}>{idx !== 0 ? item : props.filter_type + `: any`}</option>
-//})}

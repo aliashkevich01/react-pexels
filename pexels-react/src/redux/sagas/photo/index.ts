@@ -15,11 +15,11 @@ export function* loadPhotos(action : { payload: PayloadInterface , type: string 
     const str = JSON.stringify(sessionStorage.getItem('query'))
     query = str.substring(1, str.length - 1);
   }
-  const resp: Response = yield call(
+  try {
+    const resp: Response = yield call(
       fetch,
       createRequestString(query, page, orientation, size, color),
       FETCH_OPTIONS);
-  try {
     const curData: ResponseInterface = yield apply(resp, resp.json, []);
     const data: PayloadInterface = {
     query: query,
@@ -35,10 +35,10 @@ export function* loadPhotos(action : { payload: PayloadInterface , type: string 
     payload: data
   });
   }
-  catch(e) {
+  catch(e: any) {
     yield put({
       type: LOAD_PHOTOS_FAILED,
-      payload: e
+      payload: e.message
     });
   }
 };

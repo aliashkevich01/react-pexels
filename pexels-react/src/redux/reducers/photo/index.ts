@@ -109,7 +109,7 @@ export const photoReducer = (state = initialState, action: ActionInterface) => {
                     photos: [],
                 },
                 isLoading: false,
-                error: action.payload,
+                isError: action.payload,
             }
         } 
         case LOAD_BACKGROUND: {

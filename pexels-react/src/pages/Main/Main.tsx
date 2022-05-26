@@ -63,29 +63,10 @@ export default function Main() {
           <Author
             photographer="Deden Dicky Ramdhani"
             photographer_url="https://www.pexels.com/@drdeden88"
-          ></Author>
+           />
         </div>
       </div>
       <CardList />
     </Fragment>
   );
 }
-/* 
-<div className={classes.main_container}>
-        <Header />
-        <div className={classes.search_wrapper}>
-          <h1 className={classes.main_title}>
-            The best free stock photos, royalty free images & videos shared by creators.
-          </h1>
-          <SearchBar />
-          <CategoryLink />
-        </div>
-        <div className={classes.author_link}>
-          <Author
-            photographer="Deden Dicky Ramdhani"
-            photographer_url="https://www.pexels.com/@drdeden88"
-          ></Author>
-        </div>
-      </div>
-      <CardList></CardList>
-*/
