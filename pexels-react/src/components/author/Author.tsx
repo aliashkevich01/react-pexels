@@ -4,7 +4,7 @@ import classes from './author.module.css';
 const Author = (props: PhotographerInterface) => {
   return (
     <a
-      className={classes.author_link}
+      className={classes.author__link}
       href={props.photographer_url}
       target="_blank"
       rel="noreferrer"

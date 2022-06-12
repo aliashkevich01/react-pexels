@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import App from './App';
 import store from './redux';
 
-const container = document.getElementById('root')!;
+const container = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(container);
 
 root.render(

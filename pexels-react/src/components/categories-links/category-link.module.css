@@ -1,4 +1,5 @@
 .category_wrap{
+  margin-top: 30px;
   display:flex;
   align-items: center;
   justify-content: center;
@@ -6,7 +7,7 @@
 }
 .category_text{
   font-size: 1.2rem;
-  color: #fff;
+  color: hsla(0,0%,100%,.7);
 }
 .links_flex{
   display: flex;
@@ -17,13 +18,14 @@
 .category_link{
   text-decoration: none;
   font-size: 1.2rem;
-  color: rgb(209, 202, 202);
+  color: #fff;
   overflow: hidden;
   margin: 5px;
 }
 .category_link:hover{
-  filter: invert(100%);
-  text-decoration: underline;
+  color: hsla(0,0%,100%,.7);
+  cursor: pointer;
+  transition: filter .25s ease;
 }
 @media (max-width: 500px) {
   .category_link, .category_text {

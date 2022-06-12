@@ -7,6 +7,15 @@
     justify-items: center;
     margin: 2vw;
 }
+.card_list > div:nth-child(9n+2){
+  height: 50vh;
+}
+.card_list > div:nth-child(9n+5){
+  height: 35vh;
+}
+.card_list > div:nth-child(9n+8){
+  height: 50vh;
+}
 @media(max-width: 770px) {
     .card_list {
       grid-template-columns: 4fr 4fr;

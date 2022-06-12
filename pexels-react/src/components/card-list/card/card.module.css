@@ -1,6 +1,7 @@
 .card_wrap{
   position: relative;
   width: 30vw;
+  height: 40vh;
 }
 .card_img{
   width: 100%;
@@ -9,14 +10,16 @@
   display: none;
   padding-left: 10px;
   padding-bottom: 10px;
-  filter: grayscale(1);
+}
+.card_wrap:hover{
+  filter: grayscale(0.5);
 }
 .card_wrap:hover .card_bar{
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: absolute;
-  bottom: 0;
+  bottom: 10px;
 }
 .buttons{
   display: flex;

@@ -1,13 +1,18 @@
 .main_container{
+  font-family: 'Plus Jakarta Sans', sans-serif;
   width: 100vw;
-  height: 100vh;
+  min-height: 500px;
   overflow: hidden;
+  position: relative;
 }
 .search_wrapper{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.search_wrapper > div{
+  margin-top: 30px;
 }
 .main_title{
   text-align: center;
@@ -16,14 +21,9 @@
   margin-top: 100px;
 }
 .author_link{
-  position: relative;
-  top: 17vw;
-  left: 80vw;
-  width: 20vw;
-}
-.author_link:hover{
-  filter: invert(50%);
-  text-decoration: underline;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
 }
 .card_list{
   position: relative;

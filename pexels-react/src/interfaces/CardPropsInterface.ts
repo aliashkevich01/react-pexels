@@ -1,5 +1,5 @@
-import { PhotoInterface } from "./PhotoInterface";
+import { PhotoInterface } from './PhotoInterface';
 
 export interface CardPropsInterface {
-    photo: PhotoInterface;
+  photo: PhotoInterface;
 }

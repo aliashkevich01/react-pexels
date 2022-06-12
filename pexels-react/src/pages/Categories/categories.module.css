@@ -1,15 +1,23 @@
+.container{
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  position: relative;
+}
 .categories_header{
+  position: fixed;
+  top: 0;
   background-color: #232a34;
 }
 .categories_header > div{
   display: flex !important;
-  border-radius: 8px;
   color: #C4C4C4;
+}
+.categories_header > .search_bar{
+  padding-bottom: 20px;
 }
 .filters_nav{
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   margin-right: 20px;
   margin-top: 20vh;
 }

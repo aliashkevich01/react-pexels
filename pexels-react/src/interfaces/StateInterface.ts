@@ -1,6 +1,6 @@
-import { stateInterface } from "../redux/reducers/photo";
+import { stateInterface } from '../redux/reducers/photo';
 
 export interface StateInterface {
-    photo: stateInterface;
-    router: {};
+  photo: stateInterface;
+  router: Record<string, unknown>;
 }
