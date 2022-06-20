@@ -1,43 +1,6 @@
 /* eslint-disable eqeqeq */
-import { QueryParamsInterface } from '../../interfaces/QueryParamsInterface';
-export const queries = [
-  'nature',
-  'pets',
-  'flowers',
-  'sport',
-  'art',
-  'technologies',
-  'galaxy',
-  'business',
-  'basketball',
-  'beach',
-  'football',
-  'tennis',
-  'city',
-  'hockey',
-  'soccer',
-  'programming',
-  'python',
-  'java',
-  'cars',
-  'food',
-  'space',
-  'textures',
-  'asteroids',
-  'earth',
-  'mars',
-  'jupiter',
-  'moon',
-  'mountains',
-  'rocks',
-  'coffee',
-  'tea',
-  'restaurants',
-  'morning',
-  'evening',
-  'night',
-  'winter',
-];
+import { QueryParamsInterface } from '../interfaces/QueryParamsInterface';
+import { queries } from '../constants';
 export const randomizeQueries = () => {
   const max = 20;
   const randomized: Array<string> = [];
@@ -53,9 +16,7 @@ export function getRandomInt(max: number) {
   max = Math.floor(max);
   return Math.floor(Math.random() * max);
 }
-export const ORIENTATION = ['all', 'landscape', 'portrait', 'square'];
-export const SIZES = ['any', 'large', 'medium', 'small'];
-export const COLORS = ['any', 'red', 'blue', 'green', 'black'];
+
 export const createRequestString = (
   query: string,
   page: number,
@@ -82,5 +43,6 @@ export const createRequestString = (
   return result;
 };
 if (localStorage.getItem('liked_photos') == undefined) {
-  localStorage.liked_photos = [];
+  localStorage.liked_photos = '';
+  localStorage.liked_photos.slice(1);
 }

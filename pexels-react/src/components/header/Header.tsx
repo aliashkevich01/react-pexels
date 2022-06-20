@@ -7,7 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StateInterface } from '../../interfaces/StateInterface';
 import { stateInterface } from '../../redux/reducers/photo';
 import { LOCALES } from '../../i18n/locales';
-import { CHANGE_LOCALE } from '../../redux/reducers/photo/actions';
+import { changeLocale } from '../../redux/reducers/photo/actions';
+import { Redirect } from 'react-router';
 
 const Header = (props: { className?: string }) => {
   const data: stateInterface = useSelector((state: StateInterface) => state.photo);
@@ -15,14 +16,7 @@ const Header = (props: { className?: string }) => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const changeLanguage = () => {
     const switchedLanguage = data.locale === LOCALES.ENGLISH ? LOCALES.RUSSIAN : LOCALES.ENGLISH;
-    setIsNavExpanded(!isNavExpanded);
-    dispatch({
-      type: CHANGE_LOCALE,
-      payload: {
-        ...data,
-        locale: switchedLanguage,
-      },
-    });
+    dispatch(changeLocale(data, switchedLanguage));
   };
   return (
     <header className={`${props.className} ${classes.header}`}>
@@ -58,7 +52,7 @@ const Header = (props: { className?: string }) => {
               className={classes.categories_link}
               onClick={() => {
                 sessionStorage.removeItem('query');
-                window.location.href = '/';
+                <Redirect to={'/'} />;
               }}
             >
               <FormattedMessage id="main_route" />
@@ -69,7 +63,7 @@ const Header = (props: { className?: string }) => {
               to="/categories"
               className={classes.categories_link}
               onClick={() => {
-                window.location.href = '/categories';
+                <Redirect to={'/categories'} />;
               }}
             >
               <FormattedMessage id="categories_route" />

@@ -1,7 +1,8 @@
-/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FETCH_OPTIONS } from '../../../interfaces/FetchOptions';
-import { apply, call, put, select, take, fork, takeLatest } from 'redux-saga/effects';
+/* eslint-disable prefer-const */
+
+import { FETCH_OPTIONS } from '../../../constants/FetchOptions';
+import { apply, call, put, select, take, fork, takeLatest, spawn } from 'redux-saga/effects';
 import {
   LOAD_BACKGROUND_SUCCESS,
   LOAD_PHOTOS,
@@ -13,7 +14,7 @@ import { ResponseInterface } from '../../../interfaces/responseInterface';
 import { PayloadInterface } from '../../../interfaces/ActionInterface';
 import { StateInterface } from '../../../interfaces/StateInterface';
 import { stateInterface } from '../../reducers/photo';
-import { createRequestString, getRandomInt } from '../../utils';
+import { createRequestString, getRandomInt } from '../../../utils';
 import { PhotoInterface } from '../../../interfaces/PhotoInterface';
 
 export function* loadPhotos(action: { payload: PayloadInterface; type: string }) {
@@ -82,7 +83,7 @@ export function* loadOnEntry() {
   }
 }
 export default function* photoSaga() {
-  yield fork(loadBackground);
-  yield fork(loadOnEntry);
+  yield spawn(loadBackground);
+  yield takeLatest(LOCATION_CHANGE, loadOnEntry);
   yield takeLatest(LOAD_PHOTOS, loadPhotos);
 }

@@ -7,12 +7,6 @@ export default function Card(props: CardPropsInterface) {
   const [isLiked, setIsLiked] = useState(
     localStorage.liked_photos.includes(props.photo.id) ? true : false
   );
-  const createAttrs = (img: Blob) => {
-    const link = document.createElement('a');
-    link.setAttribute('href', URL.createObjectURL(img));
-    link.setAttribute('download', `${Date.now()}`);
-    link.click();
-  };
   const download = async () => {
     const resp = await fetch(props.photo.src.large, {
       headers: {
@@ -21,51 +15,53 @@ export default function Card(props: CardPropsInterface) {
       },
     });
     const img = await resp.blob();
-    createAttrs(img);
-  };
-  const removeLike = (idx: number) => {
-    const likedPhotos = localStorage.liked_photos.split(',');
-    likedPhotos.filter((id: number) => id !== idx);
-    localStorage.liked_photos = likedPhotos;
-  };
-  const addLike = (idx: number) => {
-    const likedPhotos = localStorage.liked_photos.split(',');
-    if (!likedPhotos.includes(idx)) {
-      likedPhotos.push(idx);
-    }
-    localStorage.liked_photos = likedPhotos;
+    const link = document.createElement('a');
+    link.setAttribute('href', URL.createObjectURL(img));
+    link.download = props.photo.alt;
+    link.click();
   };
   const handleLike = () => {
     setIsLiked(!isLiked);
-    isLiked ? removeLike(props.photo.id) : addLike(props.photo.id);
+    const likedPhotos: Array<number> = JSON.parse(localStorage.liked_photos);
+    if (!likedPhotos.includes(props.photo.id)) {
+      likedPhotos.push(props.photo.id);
+    } else {
+      likedPhotos.filter((id: number) => id != props.photo.id);
+    }
+    localStorage.liked_photos = String(JSON.stringify(likedPhotos));
   };
-  const back = {
-    background: `url(${props.photo.src.tiny}) center/cover no-repeat`,
-  };
+  //const back = {
+  //  background: `url(${props.photo.src.original}) center/cover no-repeat`,
+  //};
   return (
-    <div className={classes.card_wrap} style={back}>
+    <div className={classes.card_wrap}>
+      <img src={props.photo.src.original}></img>
       <div className={classes.card_bar}>
-        <Author
-          photographer={props.photo.photographer}
-          photographer_url={props.photo.photographer_url}
-        ></Author>
+        <div>
+          <Author
+            photographer={props.photo.photographer}
+            photographer_url={props.photo.photographer_url}
+          ></Author>
+        </div>
         <div className={classes.buttons}>
           <div className={classes.download_button}>
             <button className={classes.download_btn} tabIndex={0} onClick={download}>
               <svg
-                width="32"
-                height="21"
-                viewBox="0 0 42 32"
+                className={classes.download_svg}
+                width="36"
+                height="36"
+                viewBox="0 0 36 36"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
+                <rect className={classes.rect} width="36" height="36" fill="#D9D9D9" />
                 <path
-                  d="M19.9393 24.0607C20.5251 24.6464 21.4749 24.6464 22.0607 24.0607L31.6066 14.5147C32.1924 13.9289 32.1924 12.9792 31.6066 12.3934C31.0208 11.8076 30.0711 11.8076 29.4853 12.3934L21 20.8787L12.5147 12.3934C11.9289 11.8076 10.9792 11.8076 10.3934 12.3934C9.80761 12.9792 9.80761 13.9289 10.3934 14.5147L19.9393 24.0607ZM19.5 0V23H22.5V0L19.5 0Z"
+                  d="M16.9393 25.4669C17.5251 26.0527 18.4749 26.0527 19.0607 25.4669L28.6066 15.921C29.1924 15.3352 29.1924 14.3854 28.6066 13.7996C28.0208 13.2139 27.0711 13.2139 26.4853 13.7996L18 22.2849L9.51472 13.7996C8.92893 13.2139 7.97918 13.2139 7.3934 13.7996C6.80761 14.3854 6.80761 15.3352 7.3934 15.921L16.9393 25.4669ZM16.5 5V24.4062H19.5V5H16.5Z"
                   fill="white"
                 />
-                <line x1="1" y1="14" x2="1" y2="32" stroke="white" strokeWidth="2" />
-                <line y1="31" x2="42" y2="31" stroke="#FFFEFE" strokeWidth="2" />
-                <line x1="41" y1="14" x2="41" y2="32" stroke="white" strokeWidth="2" />
+                <line x1="2" y1="16.8125" x2="2" y2="32" stroke="white" strokeWidth="2" />
+                <line x1="1" y1="31" x2="35" y2="31" stroke="#FFFEFE" strokeWidth="2" />
+                <line x1="34.381" y1="16.8125" x2="34.381" y2="32" stroke="white" strokeWidth="2" />
               </svg>
             </button>
           </div>
@@ -73,30 +69,34 @@ export default function Card(props: CardPropsInterface) {
             <button tabIndex={0} className={classes.like_btn} onClick={handleLike}>
               {isLiked ? (
                 <svg
-                  width="16"
-                  height="15"
-                  viewBox="0 0 16 15"
-                  fill="#FF0000"
+                  className={classes.like_svg}
+                  width="36"
+                  height="36"
+                  viewBox="0 0 36 36"
+                  fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
+                  <rect className={classes.rect} width="36" height="36" rx="5" fill="#D9D9D9" />
                   <path
-                    d="M10.5 11.5L7.5 14L1.5 9L0.5 7.5L0 6V5.5V4L1 2L3 1H5.5L7.5 3L8.5 1.5L10 1H12L13.5 1.5L15 4V4.5V5L14.5 7.5L13.5 9L10.5 11.5Z"
-                    stroke="black"
-                    strokeWidth="3"
+                    className={classes.like}
+                    d="M18.4252 10.4163C19.4343 7.81685 21.7393 6.00054 24.4204 6.00054C28.0319 6.00054 30.633 9.3587 30.96 13.3609C30.96 13.3609 31.1365 14.3543 30.748 16.1429C30.219 18.5788 28.9755 20.7429 27.2989 22.3946L18.4252 31L9.70107 22.394C8.02454 20.7429 6.78102 18.5783 6.25201 16.1424C5.8635 14.3538 6.04 13.3603 6.04 13.3603C6.36701 9.35815 8.96806 6 12.5796 6C15.2612 6 17.4162 7.81685 18.4252 10.4163Z"
+                    fill="red"
                   />
                 </svg>
               ) : (
                 <svg
-                  width="16"
-                  height="15"
-                  viewBox="0 0 16 15"
+                  className={classes.like_svg}
+                  width="36"
+                  height="36"
+                  viewBox="0 0 36 36"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
+                  <rect className={classes.rect} width="36" height="36" rx="5" fill="#D9D9D9" />
                   <path
-                    d="M10.5 11.5L7.5 14L1.5 9L0.5 7.5L0 6V5.5V4L1 2L3 1H5.5L7.5 3L8.5 1.5L10 1H12L13.5 1.5L15 4V4.5V5L14.5 7.5L13.5 9L10.5 11.5Z"
-                    stroke="black"
-                    strokeWidth="2"
+                    className={classes.like}
+                    d="M18.4252 10.4163C19.4343 7.81685 21.7393 6.00054 24.4204 6.00054C28.0319 6.00054 30.633 9.3587 30.96 13.3609C30.96 13.3609 31.1365 14.3543 30.748 16.1429C30.219 18.5788 28.9755 20.7429 27.2989 22.3946L18.4252 31L9.70107 22.394C8.02454 20.7429 6.78102 18.5783 6.25201 16.1424C5.8635 14.3538 6.04 13.3603 6.04 13.3603C6.36701 9.35815 8.96806 6 12.5796 6C15.2612 6 17.4162 7.81685 18.4252 10.4163Z"
+                    fill="white"
                   />
                 </svg>
               )}

@@ -2,14 +2,12 @@ import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { StateInterface } from '../../interfaces/StateInterface';
-import { LOAD_PHOTOS } from '../../redux/reducers/photo/actions';
+import { searchByQueryAction } from '../../redux/reducers/photo/actions';
 import classes from './SearchBar.module.css';
 
 export default function SearchBar() {
   const [query, setQuery] = useState(
-    window.location.pathname === '/categories' && sessionStorage.getItem('query') !== ''
-      ? sessionStorage.getItem('query')
-      : 'soccer'
+    sessionStorage.getItem('query') ? sessionStorage.getItem('query') : 'soccer'
   );
   const intl = useIntl();
   const data: StateInterface = useSelector((state: StateInterface) => state);
@@ -17,13 +15,7 @@ export default function SearchBar() {
   const search = () => {
     sessionStorage.removeItem('query');
     if (query) {
-      dispatch({
-        type: LOAD_PHOTOS,
-        payload: {
-          query: query,
-          page: 1,
-        },
-      });
+      dispatch(searchByQueryAction(query));
     } else {
       alert('No query parameter!');
     }
@@ -40,7 +32,7 @@ export default function SearchBar() {
         }}
         defaultValue={
           window.location.pathname === '/categories'
-            ? sessionStorage.getItem('query') !== ''
+            ? sessionStorage.getItem('query')
               ? intl.formatMessage({
                   id: JSON.stringify(sessionStorage.getItem('query')).substring(
                     1,

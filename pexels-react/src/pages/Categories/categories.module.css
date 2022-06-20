@@ -11,8 +11,8 @@
   display: flex !important;
   color: #C4C4C4;
 }
-.categories_header > .search_bar{
-  padding-bottom: 20px;
+.categories_header > div, ul, a{
+  margin-bottom: 20px;
 }
 .filters_nav{
   display: flex;

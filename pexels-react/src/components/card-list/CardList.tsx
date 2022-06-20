@@ -6,14 +6,13 @@ import Preloader from '../preloader/Preloader';
 import Card from './card/Card';
 import classes from './CardList.module.css';
 
-function CardMap(items: Array<PhotoInterface>) {
-  return items.map((photo: PhotoInterface) => {
-    return <Card key={photo.id} photo={photo} />;
-  });
-}
-
 export default function CardList() {
   const data: StateInterface = useSelector((state: StateInterface) => state);
+  const CardMap = (items: Array<PhotoInterface>) => {
+    return items.map((photo: PhotoInterface) => {
+      return <Card key={photo.id} photo={photo} />;
+    });
+  };
   return (
     <div className={classes.card_list} id="card-list">
       {data?.photo?.isLoading ? (

@@ -6,7 +6,7 @@ import CategoryLink from '../../components/categories-links/CategoryLink';
 import Header from '../../components/header/Header';
 import SearchBar from '../../components/search-bar/SearchBar';
 import { StateInterface } from '../../interfaces/StateInterface';
-import { LOAD_PHOTOS } from '../../redux/reducers/photo/actions';
+import { searchByMainScroll } from '../../redux/reducers/photo/actions';
 import classes from './Main.module.css';
 import CardList from '../../components/card-list/CardList';
 import { FormattedMessage } from 'react-intl';
@@ -38,13 +38,7 @@ export default function Main() {
         ((e.target as Document).documentElement.scrollTop + window.innerHeight) <
       10
     ) {
-      dispatch({
-        type: LOAD_PHOTOS,
-        payload: {
-          query: data.photo.query,
-          page: data.photo.page + 1,
-        },
-      });
+      dispatch(searchByMainScroll(data.photo.query, data.photo.page));
     }
   };
   useEffect(() => {

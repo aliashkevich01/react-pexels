@@ -3,12 +3,17 @@ import { FormattedMessage } from 'react-intl';
 import { useSelector, useDispatch } from 'react-redux';
 import { FilterInterface, filterTranslateInterface } from '../../interfaces/FilterInterface';
 import { StateInterface } from '../../interfaces/StateInterface';
-import { LOAD_PHOTOS } from '../../redux/reducers/photo/actions';
+import {
+  searchByColorAction,
+  searchByOrientationAction,
+  searchBySizeAction,
+} from '../../redux/reducers/photo/actions';
 import classes from './filter.module.css';
 
 export default function Filter(props: FilterInterface) {
   const data: StateInterface = useSelector((state: StateInterface) => state);
   const dispatch = useDispatch();
+  const { query, size, orientation, color } = data.photo;
   const f = props.filter_type;
   const filterTranslations: Array<filterTranslateInterface> = [];
   props.filter_values.forEach((filter, idx) => {
@@ -24,42 +29,15 @@ export default function Filter(props: FilterInterface) {
     }
     switch (f) {
       case 'size': {
-        dispatch({
-          type: LOAD_PHOTOS,
-          payload: {
-            query: data.photo.query,
-            page: 1,
-            orientation: data.photo.orientation,
-            size: e.target.value,
-            color: data.photo.color,
-          },
-        });
+        dispatch(searchBySizeAction(e.target.value, query, orientation, color));
         break;
       }
       case 'orientation': {
-        dispatch({
-          type: LOAD_PHOTOS,
-          payload: {
-            query: data.photo.query,
-            page: 1,
-            orientation: e.target.value,
-            size: data.photo.size,
-            color: data.photo.color,
-          },
-        });
+        dispatch(searchByOrientationAction(e.target.value, query, size, color));
         break;
       }
       case 'color': {
-        dispatch({
-          type: LOAD_PHOTOS,
-          payload: {
-            query: data.photo.query,
-            page: 1,
-            color: e.target.value,
-            size: data.photo.size,
-            orientation: data.photo.orientation,
-          },
-        });
+        dispatch(searchByColorAction(e.target.value, query, orientation, size));
         break;
       }
     }

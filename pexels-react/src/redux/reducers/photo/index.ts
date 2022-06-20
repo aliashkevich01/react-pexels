@@ -64,12 +64,10 @@ const initialState: stateInterface = {
 };
 
 export const photoReducer = (state = initialState, action: ActionInterface) => {
-  const prevData = state;
   switch (action.type) {
     case LOAD_PHOTOS: {
-      const newData = action.payload;
       const { query, page, orientation, size, color } = action.payload;
-      if (newData.page === prevData.page || newData.page === 1) {
+      if (page === state.page || page === 1) {
         return {
           ...state,
           isLoading: true,
@@ -100,7 +98,7 @@ export const photoReducer = (state = initialState, action: ActionInterface) => {
         isLoading: false,
         data: {
           ...action.payload.data,
-          photos: [...prevData.data.photos, ...newData.data.photos],
+          photos: [...state.data.photos, ...newData.data.photos],
         },
       };
     }

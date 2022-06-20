@@ -7,7 +7,7 @@
   position: fixed;
   z-index: 99;
   padding-top: 20px;
-  height: 15vh;
+  height: 10vh;
 }
 .header > div{
   display: none;
@@ -37,7 +37,7 @@
   text-decoration: none;
 }
 .header_search_bar{
-  margin-top: -30px;
+  margin-top: -40px;
   display: none;
 }
 .hamburger {
