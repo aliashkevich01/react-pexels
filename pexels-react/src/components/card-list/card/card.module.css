@@ -15,12 +15,12 @@ img{
 .card_wrap:hover:after {
   content: '';
   position: absolute;
-  top: 90%;
+  top: 85%;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(0deg, rgba(84,74,74,0.8410714627647934) 10%, rgba(112,100,100,0.08) 81%);
-  z-index: 1;
+  background: linear-gradient(0deg, rgba(9,8,8,0.9410714627647934) 15%, rgba(213,213,213,0.08) 100%);
+  z-index: 10;
 }
 .card_wrap:hover .card_bar{
   width: 95%;
@@ -30,6 +30,7 @@ img{
   position: absolute;
   bottom: 10px;
   right: 10px;
+  z-index: 100;
 }
 .buttons{
   display: flex;
