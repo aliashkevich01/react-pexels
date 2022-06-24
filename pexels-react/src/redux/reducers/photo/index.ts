@@ -9,7 +9,7 @@ import {
   LOAD_PHOTOS,
   LOAD_PHOTOS_FAILED,
   LOAD_PHOTOS_SUCCESS,
-} from './actions';
+} from '../../actions/actions';
 export interface stateInterface {
   query: string;
   data: ResponseInterface;
@@ -105,9 +105,6 @@ export const photoReducer = (state = initialState, action: ActionInterface) => {
     case LOAD_PHOTOS_FAILED: {
       return {
         ...state,
-        data: {
-          photos: [],
-        },
         isLoading: false,
         isError: action.payload,
       };

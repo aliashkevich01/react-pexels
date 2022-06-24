@@ -1,12 +1,14 @@
 .card_list{
-  position: relative;
-  margin: 2em;
   column-count: 3;
-  column-gap: 20px;
+  column-gap: 10px;
+  margin: 20px;
 }
-@media(max-width: 770px) {
+@media(max-width: 900px) {
     .card_list {
       column-count: 2;
+      margin: 10px;
+      column-gap: 5px;
+      row-gap: 5px;
     }
 }
 @media(max-width: 500px) {

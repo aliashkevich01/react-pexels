@@ -8,6 +8,7 @@ import { history } from './redux/reducers';
 import { IntlProvider } from 'react-intl';
 import { messages } from './i18n';
 import { StateInterface } from './interfaces/StateInterface';
+import { Redirect } from 'react-router';
 
 function App() {
   const data: StateInterface = useSelector((state: StateInterface) => state);
@@ -17,8 +18,9 @@ function App() {
       <IntlProvider messages={messages[locale]} locale={locale} defaultLocale="en">
         <ConnectedRouter history={history} />
         <Router history={history}>
-          <Route path="/categories" component={Categories} />
+          <Route path="/categories" component={Categories} exact></Route>
           <Route path="/" component={Main} exact />
+          <Route render={() => <Redirect to="/" />} />
         </Router>
       </IntlProvider>
     </Provider>

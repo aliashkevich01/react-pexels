@@ -4,17 +4,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FilterInterface, filterTranslateInterface } from '../../interfaces/FilterInterface';
 import { StateInterface } from '../../interfaces/StateInterface';
 import {
-  searchByColorAction,
+  SearchByColorAction,
   searchByOrientationAction,
   searchBySizeAction,
-} from '../../redux/reducers/photo/actions';
+} from '../../redux/actions/actions';
 import classes from './filter.module.css';
 
 export default function Filter(props: FilterInterface) {
   const data: StateInterface = useSelector((state: StateInterface) => state);
   const dispatch = useDispatch();
   const { query, size, orientation, color } = data.photo;
-  const f = props.filter_type;
+  const type = props.filter_type;
   const filterTranslations: Array<filterTranslateInterface> = [];
   props.filter_values.forEach((filter, idx) => {
     filterTranslations.push({
@@ -27,17 +27,17 @@ export default function Filter(props: FilterInterface) {
     if (e.target.ariaSelected !== props.filter_values[0]) {
       e.target.style.background = '#ededed';
     }
-    switch (f) {
+    switch (type) {
       case 'size': {
-        dispatch(searchBySizeAction(e.target.value, query, orientation, color));
+        dispatch(searchBySizeAction(data, e.target.value, query, orientation, color));
         break;
       }
       case 'orientation': {
-        dispatch(searchByOrientationAction(e.target.value, query, size, color));
+        dispatch(searchByOrientationAction(data, e.target.value, query, size, color));
         break;
       }
       case 'color': {
-        dispatch(searchByColorAction(e.target.value, query, orientation, size));
+        dispatch(SearchByColorAction(data, e.target.value, query, orientation, size));
         break;
       }
     }

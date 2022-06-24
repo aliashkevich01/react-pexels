@@ -1,4 +1,3 @@
-/* eslint-disable eqeqeq */
 import { QueryParamsInterface } from '../interfaces/QueryParamsInterface';
 import { queries } from '../constants';
 export const randomizeQueries = () => {

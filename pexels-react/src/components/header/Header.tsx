@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StateInterface } from '../../interfaces/StateInterface';
 import { stateInterface } from '../../redux/reducers/photo';
 import { LOCALES } from '../../i18n/locales';
-import { changeLocale } from '../../redux/reducers/photo/actions';
+import { ChangeLocaleAction } from '../../redux/actions/actions';
 import { Redirect } from 'react-router';
 
 const Header = (props: { className?: string }) => {
@@ -16,7 +16,7 @@ const Header = (props: { className?: string }) => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const changeLanguage = () => {
     const switchedLanguage = data.locale === LOCALES.ENGLISH ? LOCALES.RUSSIAN : LOCALES.ENGLISH;
-    dispatch(changeLocale(data, switchedLanguage));
+    dispatch(ChangeLocaleAction(data, switchedLanguage));
   };
   return (
     <header className={`${props.className} ${classes.header}`}>

@@ -39,3 +39,4 @@ export const queries = [
   'night',
   'winter',
 ];
+export const PHOTOS_IDS = [165624, 2796, 132709, 2014422, 3573351, 2880507];

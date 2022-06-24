@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { StateInterface } from '../../interfaces/StateInterface';
-import { searchByQueryAction } from '../../redux/reducers/photo/actions';
+import { SearchByQueryAction } from '../../redux/actions/actions';
 import classes from './SearchBar.module.css';
 
 export default function SearchBar() {
@@ -15,7 +15,7 @@ export default function SearchBar() {
   const search = () => {
     sessionStorage.removeItem('query');
     if (query) {
-      dispatch(searchByQueryAction(query));
+      dispatch(SearchByQueryAction(data, query));
     } else {
       alert('No query parameter!');
     }

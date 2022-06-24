@@ -16,33 +16,18 @@
 }
 .main_title{
   text-align: center;
-  max-width: 60vw;
+  max-width: 50vw;
   color: #fff;
-  margin-top: 100px;
+  margin-top: 80px;
 }
 .author_link{
   position: absolute;
   bottom: 20px;
   right: 20px;
 }
-.card_list{
-  position: relative;
-  display: grid;
-  grid-template-columns: 4fr 4fr 4fr;
-  column-gap: 25px;
-  row-gap: 20px;
-  justify-items: center;
-  margin: 2vw;
-}
 @media(max-width: 770px) {
   .main_title {
     font-size: 1.3rem;
-  }
-  .card_list {
-    grid-template-columns: 4fr 4fr;
-    column-gap: 15px;
-    row-gap: 15px;
-    margin-left: 0;
   }
 }
 @media(max-width: 650px) {
@@ -51,10 +36,6 @@
   }
 }
 @media(max-width: 500px) {
-  .card_list {
-    grid-template-columns: 4fr;
-    column-gap: 0;
-  }
   .author_link{
     font-size: 12px;
     max-width: 30vw;

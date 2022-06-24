@@ -1,16 +1,19 @@
-import { getRandomInt, randomizeQueries } from '../../utils';
+import { randomizeQueries } from '../../utils';
 import classes from './category-link.module.css';
 import { FormattedMessage } from 'react-intl';
 import { Fragment } from 'react';
 import React from 'react';
-import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { SearchByQueryAction } from '../../redux/actions/actions';
+import { StateInterface } from '../../interfaces/StateInterface';
 
 const CategoryLink = React.memo(function CategoryLink() {
+  const data: StateInterface = useSelector((state: StateInterface) => state);
+  const dispatch = useDispatch();
   const generatedLinks = randomizeQueries();
   const handleClick = (value: string) => {
-    sessionStorage.setItem('query', value);
-    <Redirect to={'/categories'} />;
+    dispatch(SearchByQueryAction(data, value));
   };
   return (
     <div className={classes.category_wrap}>
@@ -19,11 +22,12 @@ const CategoryLink = React.memo(function CategoryLink() {
       </p>
       :
       <Fragment>
-        {generatedLinks.map((item) => {
+        {generatedLinks.map((item, idx) => {
           return (
             <Link
               to="/categories"
-              key={getRandomInt(100000)}
+              query={item}
+              key={idx}
               className={classes.category_link}
               onClick={() => {
                 handleClick(item);

@@ -1,35 +1,40 @@
 .card_wrap{
   margin: 0;
-  display: grid;
-  grid-template-rows: 1fr auto;
   margin-bottom: 10px;
-  break-inside: avoid;
   position: relative;
 }
 img{
-  max-width: 100%;
+  width: 100%;
   display: block;
-}
-.card_wrap > img {
-  grid-row: 1 / -1;
-  grid-column: 1;
 }
 .card_bar{
   display: none;
   padding-left: 10px;
   padding-bottom: 10px;
 }
+.card_wrap:hover:after {
+  content: '';
+  position: absolute;
+  top: 90%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(0deg, rgba(84,74,74,0.8410714627647934) 10%, rgba(112,100,100,0.08) 81%);
+  z-index: 1;
+}
 .card_wrap:hover .card_bar{
+  width: 95%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: absolute;
   bottom: 10px;
+  right: 10px;
 }
 .buttons{
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .download_btn, .like_btn{
   background-color: transparent;
@@ -47,14 +52,4 @@ img{
 }
 .download_svg:hover > .rect{
   fill: #AAA;
-}
-@media(max-width: 770px) {
-  .card_wrap {
-    width: 41vw;
-  }
-}
-@media(max-width: 500px) {
-  .card_wrap {
-    width: 90vw;
-  }
 }

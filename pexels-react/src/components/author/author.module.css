@@ -1,7 +1,7 @@
 .author__link{
   text-decoration: none;
   color: #fff;
-  font-size: 1.3rem;
+  font-size: 24px;
 }
 .author__link:hover{
   color: hsla(0,0%,100%,.7);

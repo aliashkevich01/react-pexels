@@ -1,5 +1,5 @@
 .select_wrapper {
-    width: 30vw;
+    width: 30%;
     position: relative;
     height: 40px;
     color: #444;
@@ -33,7 +33,7 @@ select {
       margin-bottom: 15px;
       margin-right: 0;
       margin-left: 20px;
-      width: 80vw;
+      width: 90%;
     }
     .select_wrapper > select > option {
       width: 300px;
