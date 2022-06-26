@@ -29,7 +29,6 @@ export default function CardList() {
     result.push(
       <div
         style={{
-          marginLeft: `${i > 0 ? '10' : 0}px`,
           flex: 1,
         }}
       >
