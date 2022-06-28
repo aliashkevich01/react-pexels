@@ -6,15 +6,10 @@ import store from './redux';
 
 const container = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(container);
-
-window.onload = () => {
-  setTimeout(() => {
-    root.render(
-      <React.StrictMode>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </React.StrictMode>
-    );
-  }, 400);
-};
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
+);

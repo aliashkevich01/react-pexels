@@ -13,10 +13,9 @@ import { FormattedMessage } from 'react-intl';
 export default function Main() {
   const data: StateInterface = useSelector((state: StateInterface) => state);
   const dispatch = useDispatch();
-  const backUrl = data.photo.backPhoto.src.landscape;
-  const backStyle = {
-    background: `url(${backUrl}) top/cover no-repeat`,
-  };
+  const isBackLoading = data.photo.backPhoto.isLoading;
+  const backUrl = data.photo.backPhoto.src?.large;
+
   const scrollHandler = (e: Event) => {
     const header = document.getElementsByTagName('header');
     const searchBar = header[0].getElementsByTagName('div') as HTMLCollection;
@@ -44,7 +43,14 @@ export default function Main() {
   });
   return (
     <Fragment>
-      <div className={classes.main_container} style={backStyle}>
+      <div
+        className={classes.main_container}
+        style={
+          isBackLoading
+            ? { background: `url('../../assets/pexels-photo-2880507.jpeg') center/cover no-repeat` }
+            : { background: `url(${backUrl}) top/cover no-repeat` }
+        }
+      >
         <Header />
         <div className={classes.search_wrapper}>
           <h1 className={classes.main_title}>

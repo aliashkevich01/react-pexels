@@ -1,6 +1,6 @@
 import { LOCALES } from '../../../i18n/locales';
 import { ActionInterface } from '../../../interfaces/ActionInterface';
-import { PhotoInterface } from '../../../interfaces/PhotoInterface';
+import { BackInterface } from '../../../interfaces/BackInterface';
 import { ResponseInterface } from '../../../interfaces/responseInterface';
 import {
   CHANGE_LOCALE,
@@ -19,7 +19,7 @@ export interface stateInterface {
   color: string;
   isLoading: boolean;
   isError: null | Error;
-  backPhoto: PhotoInterface;
+  backPhoto: BackInterface;
   locale: string;
 }
 const initialState: stateInterface = {
@@ -39,6 +39,7 @@ const initialState: stateInterface = {
   isLoading: false,
   isError: null,
   backPhoto: {
+    isLoading: false,
     id: 0,
     width: 0,
     height: 0,
@@ -110,12 +111,20 @@ export const photoReducer = (state = initialState, action: ActionInterface) => {
       };
     }
     case LOAD_BACKGROUND: {
-      return state;
+      return {
+        ...state,
+        backPhoto: {
+          isLoading: true,
+        },
+      };
     }
     case LOAD_BACKGROUND_SUCCESS: {
       return {
         ...state,
-        backPhoto: action.payload,
+        backPhoto: {
+          isLoading: false,
+          ...action.payload,
+        },
       };
     }
     case CHANGE_LOCALE: {
