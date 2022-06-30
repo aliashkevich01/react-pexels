@@ -13,9 +13,7 @@ import { FormattedMessage } from 'react-intl';
 export default function Main() {
   const data: StateInterface = useSelector((state: StateInterface) => state);
   const dispatch = useDispatch();
-  const isBackLoading = data.photo.backPhoto.isLoading;
   const backUrl = data.photo.backPhoto.src?.large;
-
   const scrollHandler = (e: Event) => {
     const header = document.getElementsByTagName('header');
     const searchBar = header[0].getElementsByTagName('div') as HTMLCollection;
@@ -46,8 +44,8 @@ export default function Main() {
       <div
         className={classes.main_container}
         style={
-          isBackLoading
-            ? { background: `url('../../assets/pexels-photo-2880507.jpeg') center/cover no-repeat` }
+          data.photo.isLoading
+            ? { background: `#232a34` }
             : { background: `url(${backUrl}) top/cover no-repeat` }
         }
       >

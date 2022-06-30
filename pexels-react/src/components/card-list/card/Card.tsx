@@ -34,7 +34,7 @@ export default function Card(props: CardPropsInterface) {
     <div className={classes.card_wrap}>
       <img
         src={props.photo.src.tiny}
-        style={{ height: `calc(280px + ${props.photo.id % 2 ? 0 : 30}px)` }}
+        style={{ height: `calc(300px + ${props.photo.id % 2 ? 0 : 30}px)` }}
       ></img>
       <div className={classes.card_bar}>
         <div>

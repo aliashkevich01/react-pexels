@@ -1,6 +1,5 @@
-import { ConnectedRouter } from 'connected-react-router';
 import { Provider, useSelector } from 'react-redux';
-import { Router, Route } from 'react-router';
+import { Route } from 'react-router';
 import store from './redux';
 import Categories from './pages/Categories/Categories';
 import Main from './pages/Main/Main';
@@ -9,6 +8,8 @@ import { IntlProvider } from 'react-intl';
 import { messages } from './i18n';
 import { StateInterface } from './interfaces/StateInterface';
 import { Redirect } from 'react-router';
+import { Router } from 'react-router';
+import { ConnectedRouter } from 'connected-react-router';
 
 function App() {
   const data: StateInterface = useSelector((state: StateInterface) => state);
@@ -18,7 +19,7 @@ function App() {
       <IntlProvider messages={messages[locale]} locale={locale} defaultLocale="en">
         <ConnectedRouter history={history} />
         <Router history={history}>
-          <Route path="/categories" component={Categories} exact></Route>
+          <Route path="/:categories" component={Categories} />
           <Route path="/" component={Main} exact />
           <Route render={() => <Redirect to="/" />} />
         </Router>

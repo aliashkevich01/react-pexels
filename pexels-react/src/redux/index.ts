@@ -5,7 +5,6 @@ import { legacy_createStore as configureStore } from '@reduxjs/toolkit';
 import rootReducer, { history } from './reducers';
 import rootSaga from './sagas';
 import { composeWithDevTools } from 'redux-devtools-extension';
-
 const sagaMiddleware = createSagaMiddleware();
 
 const store = configureStore(

@@ -1,6 +1,6 @@
 import { LOCALES } from '../../../i18n/locales';
 import { ActionInterface } from '../../../interfaces/ActionInterface';
-import { BackInterface } from '../../../interfaces/BackInterface';
+import { PhotoInterface } from '../../../interfaces/PhotoInterface';
 import { ResponseInterface } from '../../../interfaces/responseInterface';
 import {
   CHANGE_LOCALE,
@@ -19,15 +19,15 @@ export interface stateInterface {
   color: string;
   isLoading: boolean;
   isError: null | Error;
-  backPhoto: BackInterface;
+  backPhoto: PhotoInterface;
   locale: string;
 }
 const initialState: stateInterface = {
-  query: 'soccer',
+  query: 'nature',
   data: {
     total_results: 1,
     page: 1,
-    per_page: 9,
+    per_page: 12,
     photos: [],
     prev_page: '',
     next_page: '',
@@ -39,7 +39,6 @@ const initialState: stateInterface = {
   isLoading: false,
   isError: null,
   backPhoto: {
-    isLoading: false,
     id: 0,
     width: 0,
     height: 0,

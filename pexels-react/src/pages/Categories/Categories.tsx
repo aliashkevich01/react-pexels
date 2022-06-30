@@ -7,7 +7,6 @@ import { SIZES, COLORS, ORIENTATION } from '../../constants';
 import { StateInterface } from '../../interfaces/StateInterface';
 import { searchByCategoriesAction } from '../../redux/actions/actions';
 import classes from './categories.module.css';
-
 const Categories = () => {
   const data: StateInterface = useSelector((state: StateInterface) => state);
   const dispatch = useDispatch();
@@ -21,6 +20,7 @@ const Categories = () => {
       dispatch(searchByCategoriesAction(data, query, page, orientation, size, color));
     }
   };
+
   useEffect(() => {
     document.addEventListener('scroll', scrollHandler);
     return function () {
@@ -39,4 +39,5 @@ const Categories = () => {
     </Fragment>
   );
 };
+
 export default Categories;

@@ -40,7 +40,6 @@ export default function CardList() {
       </div>
     );
   }
-  console.log(result);
   return (
     <div className={classes.card_list} id="card-list">
       {data?.photo?.isLoading ? (

@@ -6,14 +6,11 @@ import { SearchByQueryAction } from '../../redux/actions/actions';
 import classes from './SearchBar.module.css';
 
 export default function SearchBar() {
-  const [query, setQuery] = useState(
-    sessionStorage.getItem('query') ? sessionStorage.getItem('query') : 'soccer'
-  );
   const intl = useIntl();
   const data: StateInterface = useSelector((state: StateInterface) => state);
   const dispatch = useDispatch();
+  const [query, setQuery] = useState(data.photo.query ? data.photo.query : 'nature');
   const search = () => {
-    sessionStorage.removeItem('query');
     if (query) {
       dispatch(SearchByQueryAction(data, query));
     } else {
@@ -30,20 +27,7 @@ export default function SearchBar() {
         onChange={(e) => {
           setQuery(e.target.value);
         }}
-        defaultValue={
-          window.location.pathname === '/categories'
-            ? sessionStorage.getItem('query')
-              ? intl.formatMessage({
-                  id: JSON.stringify(sessionStorage.getItem('query')).substring(
-                    1,
-                    JSON.stringify(sessionStorage.getItem('query')).length - 1
-                  ),
-                })
-              : intl.formatMessage({
-                  id: data.photo.query,
-                })
-            : ''
-        }
+        value={window.location.pathname === '/categories' ? (query ? query : 'nature') : ''}
       />
       <button className={classes.search_button} onClick={search}>
         <svg
